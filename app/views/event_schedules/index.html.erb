@@ -1,0 +1,36 @@
+<h1>スケジュール一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>メモ</th>
+      <th>作成日</th>
+      <th>更新日</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @event_schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.title %></td>
+        <td><%= schedule.start_date %></td>
+        <td><%= schedule.end_date %></td>
+        <td><%= schedule.all_day ? 'はい' : 'いいえ' %></td>
+        <td><%= schedule.memo %></td>
+        <td><%= schedule.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td><%= schedule.updated_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td>
+          <%= link_to '詳細', event_schedule_path(schedule) %>
+          <%= link_to '編集', edit_event_schedule_path(schedule) %>
+          <%= button_to '削除', event_schedule_path(schedule), method: :delete, data: { confirm: '予定を削除しますか？' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '新しい予定を作成', new_event_schedule_path, class: 'btn btn-primary' %>
