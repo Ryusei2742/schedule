@@ -17,9 +17,10 @@ class EventSchedulesController < ApplicationController
   def create
     @event_schedule = EventSchedule.new(event_schedule_params)
     if @event_schedule.save
-      redirect_to event_schedules_path, notice: 'スケジュールを作成しました。'
+      flash[:notice] = 'スケジュールを作成しました。'
+      redirect_to event_schedules_path
     else
-      flash.now[:alert] = 'スケジュールの作成に失敗しました。'
+      flash.now[:notice] = 'スケジュールの作成に失敗しました。'
       render :new
     end
   end
@@ -29,9 +30,10 @@ class EventSchedulesController < ApplicationController
 
   def update
     if @event_schedule.update(event_schedule_params)
-      redirect_to event_schedule_path(@event_schedule), notice: 'スケジュールを更新しました。'
+      flash[:notice] = 'スケジュールを更新しました。'
+      redirect_to event_schedule_path
     else
-      flash.now[:alert] = 'スケジュールの更新に失敗しました。'
+      flash.now[:notice] = 'スケジュールの更新に失敗しました。'
       render :edit
     end
   end

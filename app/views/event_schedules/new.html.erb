@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+  <div><%= notice %></div>
+<% end %>
+
 <div class="max-w-lg mx-auto shadow-md p-6 rounded">
   <h2 class="text-2xl font-bold mb-4">新しいスケジュールを作成</h2>
   <%= form_with(model: @event_schedule, local: true, class: "space-y-4") do |form| %>
@@ -31,4 +35,16 @@
       <%= form.submit "保存", class: "px-4 py-2 rounded hover:bg-blue-600" %>
     </div>
   <% end %>
+
+  <% if @event_schedule.errors.any? %>
+    <div class="error-messages">
+      <h2>以下のエラーがあります:</h2>
+      <ul>
+        <% @event_schedule.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 </div>

@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+  <div><%= notice %></div>
+<% end %>
+
 <h1>スケジュール編集</h1>
 
 <%= form_with(model: @event_schedule, local: true) do |form| %>

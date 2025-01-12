@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+  <div><%= notice %></div>
+<% end %>
+
 <div class="max-w-lg mx-auto shadow-md p-6 rounded">
   <h2 class="text-2xl font-bold mb-4"><%= @event_schedule.title %></h2>
   <p><strong>開始日:</strong> <%= @event_schedule.start_date %></p>

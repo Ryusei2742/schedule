@@ -1,3 +1,8 @@
+<% if flash[:notice] %>
+  <div><%= notice %></div>
+<% end %>
+
+
 <h1>スケジュール一覧</h1>
 
 <div class="info">
@@ -8,26 +13,25 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>タイトル</th>
       <th>開始日</th>
       <th>終了日</th>
       <th>終日</th>
       <th>メモ</th>
-      <th>作成日</th>
-      <th>更新日</th>
+      <th>更新日時</th>
       <th>操作</th>
     </tr>
   </thead>
   <tbody>
     <% @event_schedules.each do |schedule| %>
       <tr>
+        <td><%= schedule.id %></td>
         <td><%= schedule.title %></td>
-        <td><%= schedule.start_date.in_time_zone('Tokyo').strftime('%Y年%m月%d日 %H:%M') %></td>
-        <td><%= schedule.end_date.in_time_zone('Tokyo').strftime('%Y年%m月%d日 %H:%M') %></td>
+        <td><%= schedule.start_date.in_time_zone('Tokyo').strftime('%Y/%m/%d') %></td>
+        <td><%= schedule.end_date.in_time_zone('Tokyo').strftime('%Y/%m/%d') %></td>
         <td><%= schedule.all_day ? '⚪︎' : '' %></td>
-        <td><%= schedule.memo %></td>
-        <td><%= schedule.created_at.in_time_zone('Tokyo').strftime('%Y年%m月%d日 %H:%M') %></td>
-        <td><%= schedule.updated_at.in_time_zone('Tokyo').strftime('%Y年%m月%d日 %H:%M') %></td>
+        <td><%= schedule.updated_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %></td>
         <td>
           <%= link_to '詳細', event_schedule_path(schedule) %>
           <%= link_to '編集', edit_event_schedule_path(schedule) %>
