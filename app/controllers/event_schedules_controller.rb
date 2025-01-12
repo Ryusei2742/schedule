@@ -3,8 +3,8 @@ class EventSchedulesController < ApplicationController
 
   def index
     @event_schedules = EventSchedule.all
-    @schedule_count = @event_schedules.count
-    @current_date = Time.current.strftime("%Y/%m/%d")
+    @total_schedules = @event_schedules.count
+    @today = Date.today.strftime("%Y年%m月%d日")
   end
 
   def show
@@ -40,8 +40,6 @@ class EventSchedulesController < ApplicationController
     @event_schedule = EventSchedule.find(params[:id])
     @event_schedule.destroy
     redirect_to event_schedules_path, notice: 'スケジュールを削除しました。'
-  rescue ActiveRecord::RecordNotFound
-    redirect_to event_schedules_path, alert: '削除対象のスケジュールが見つかりませんでした。'
   end
 
   private

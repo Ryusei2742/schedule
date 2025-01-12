@@ -17,6 +17,12 @@
     </div>
 
     <div>
+      <%= form.label :all_day, "終日", class: "block font-medium mb-1" %>
+      <%= form.check_box :all_day, class: "mr-2" %>
+      <span>終日の場合にチェックを入れてください</span>
+    </div>
+
+    <div>
       <%= form.label :memo, "メモ", class: "block font-medium mb-1" %>
       <%= form.text_area :memo, rows: 4, class: "w-full border-gray-300 rounded px-3 py-2" %>
     </div>
