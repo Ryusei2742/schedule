@@ -61,5 +61,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bigdecimal', '~> 3.1'
 gem 'mutex_m', '~> 0.1.0'
-gem 'psych', '~> 4.0'
+gem 'psych', '~> 3.1'
 gem 'pg', '~> 1.4'

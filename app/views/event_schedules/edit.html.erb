@@ -1,0 +1,48 @@
+<% if flash[:notice] %>
+  <div><%= notice %></div>
+<% end %>
+
+<h1>スケジュール編集</h1>
+
+<%= form_with(model: @event_schedule, local: true) do |form| %>
+  <% if @event_schedule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event_schedule.errors.count, "エラー") %>が発生しました:</h2>
+      <ul>
+        <% @event_schedule.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title, "タイトル" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :start_date, "開始日" %>
+    <%= form.date_field :start_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :end_date, "終了日" %>
+    <%= form.date_field :end_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :all_day, "終日" %>
+    <%= form.check_box :all_day %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :memo, "メモ" %>
+    <%= form.text_area :memo, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "更新する", class: "btn btn-primary" %>
+    <%= link_to "キャンセル", event_schedules_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

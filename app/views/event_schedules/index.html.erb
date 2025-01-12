@@ -1,0 +1,45 @@
+<% if flash[:notice] %>
+  <div><%= notice %></div>
+<% end %>
+
+
+<h1>スケジュール一覧</h1>
+
+<div class="info">
+  <p>本日の日付: <strong><%= @today %></strong></p>
+  <p>予定の合計数: <strong><%= @total_schedules %></strong></p>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>メモ</th>
+      <th>更新日時</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @event_schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.id %></td>
+        <td><%= schedule.title %></td>
+        <td><%= schedule.start_date.in_time_zone('Tokyo').strftime('%Y/%m/%d') %></td>
+        <td><%= schedule.end_date.in_time_zone('Tokyo').strftime('%Y/%m/%d') %></td>
+        <td><%= schedule.all_day ? '⚪︎' : '' %></td>
+        <td><%= schedule.updated_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M') %></td>
+        <td>
+          <%= link_to '詳細', event_schedule_path(schedule) %>
+          <%= link_to '編集', edit_event_schedule_path(schedule) %>
+          <%= link_to '削除', event_schedule_path(schedule), method: :DELETE, data: { confirm: '予定を削除しますか？' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '新しい予定を作成', new_event_schedule_path, class: 'btn btn-primary' %>

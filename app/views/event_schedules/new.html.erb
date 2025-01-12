@@ -1,0 +1,50 @@
+<% if flash[:notice] %>
+  <div><%= notice %></div>
+<% end %>
+
+<div class="max-w-lg mx-auto shadow-md p-6 rounded">
+  <h2 class="text-2xl font-bold mb-4">新しいスケジュールを作成</h2>
+  <%= form_with(model: @event_schedule, local: true, class: "space-y-4") do |form| %>
+    <div>
+      <%= form.label :title, "タイトル", class: "block font-medium mb-1" %>
+      <%= form.text_field :title, class: "w-full border-gray-300 rounded px-3 py-2" %>
+    </div>
+
+    <div>
+      <%= form.label :start_date, "開始日", class: "block font-medium mb-1" %>
+      <%= form.date_field :start_date, class: "w-full border-gray-300 rounded px-3 py-2" %>
+    </div>
+
+    <div>
+      <%= form.label :end_date, "終了日", class: "block font-medium mb-1" %>
+      <%= form.date_field :end_date, class: "w-full border-gray-300 rounded px-3 py-2" %>
+    </div>
+
+    <div>
+      <%= form.label :all_day, "終日", class: "block font-medium mb-1" %>
+      <%= form.check_box :all_day, class: "mr-2" %>
+      <span>終日の場合にチェックを入れてください</span>
+    </div>
+
+    <div>
+      <%= form.label :memo, "メモ", class: "block font-medium mb-1" %>
+      <%= form.text_area :memo, rows: 4, class: "w-full border-gray-300 rounded px-3 py-2" %>
+    </div>
+
+    <div class="flex justify-end">
+      <%= form.submit "保存", class: "px-4 py-2 rounded hover:bg-blue-600" %>
+    </div>
+  <% end %>
+
+  <% if @event_schedule.errors.any? %>
+    <div class="error-messages">
+      <h2>以下のエラーがあります:</h2>
+      <ul>
+        <% @event_schedule.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+</div>
